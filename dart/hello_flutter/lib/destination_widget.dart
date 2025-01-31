@@ -9,12 +9,9 @@ class DestinationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        destinationName,
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-      ),
-    );
+    return Row(children: [
+      Image(image: NetworkImage(("https://picsum.photos/100/100"),)),
+      Text(destinationName)
+    ]);
+    }
   }
-}
