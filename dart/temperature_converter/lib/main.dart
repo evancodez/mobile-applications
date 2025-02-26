@@ -28,19 +28,25 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
   double R = 0;
   String converted = "";
 
-  // Conversion method
   void performConversion(int value) {
     setState(() {
       groupValue = value;
       if (value == 1) {
-        // Farenheit to Celsius
         R = (T - 32.0) * (5 / 9);
-        converted = "${R.toStringAsFixed(2)} C";
+        converted = "$R C";
       } else if (value == 2) {
-        // Celsius to Farenheit
-        R = (T * 9 / 5) + 32;
-        converted = "${R.toStringAsFixed(2)} F";
+        R = (T * 1.8) + 32;
+        converted = "$R F";
       }
+    });
+  }
+
+  void clearValues() {
+    setState(() {
+      T = 0;
+      R = 0;
+      groupValue = 0;
+      converted = "";
     });
   }
 
@@ -49,16 +55,18 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text('Temperature Converter'),
+        title: const Text("Temperature Converter"),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(36.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10.0),
             TextField(
               decoration: const InputDecoration(
-                labelText: 'Enter Temperature',
+                labelText: 'Enter value',
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.number,
@@ -72,38 +80,35 @@ class _TemperatureConverterState extends State<TemperatureConverter> {
             Row(
               children: [
                 Radio(
-                  activeColor: Colors.orange,
+                  activeColor: Colors.red,
                   value: 1,
                   groupValue: groupValue,
                   onChanged: (e) => performConversion(e!),
                 ),
-                const Text("F to C"),
+                const Text("Fahrenheit To Celsius"),
                 const SizedBox(width: 5.0),
                 Radio(
-                  activeColor: Colors.orange,
+                  activeColor: Colors.red,
                   value: 2,
                   groupValue: groupValue,
                   onChanged: (e) => performConversion(e!),
                 ),
-                const Text("C to F"),
+                const Text("Celsius To Fahrenheit"),
               ],
             ),
             const SizedBox(height: 10.0),
-            TextButton(
-              child: const Text('Clear'),
-              onPressed: () {
-                setState(() {
-                  T = 0;
-                  R = 0;
-                  groupValue = 0;
-                  converted = "";
-                });
-              },
+            Center(  
+              child: TextButton(
+                child: const Text('Clear'),
+                onPressed: clearValues,
+              ),
             ),
             const SizedBox(height: 20.0),
-            Text(
+            Center(
+              child: Text(
               converted,
               style: const TextStyle(fontSize: 20),
+              )
             ),
           ],
         ),
