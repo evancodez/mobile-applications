@@ -38,7 +38,7 @@ class _MyUmAppState extends State<MyUmApp> {
   ];
   var titles = [
     "Global start for University students",
-    "A winning formula",
+    "A Winning Formula",
     "Cellular Clues to Body Symmetry",
     "Running With Heart",
     "Eyes on the Moon",
@@ -97,7 +97,7 @@ class _MyUmAppState extends State<MyUmApp> {
           ListView(
             children: List.generate(
               images.length,
-              (index) => Customcard(images[index], titles[index], bodies[index]),
+              (index) => CustomCard(images[index], titles[index], bodies[index]),
             ),
           ),
 
@@ -105,7 +105,7 @@ class _MyUmAppState extends State<MyUmApp> {
           ListView(
             children: List.generate(
               articleImages.length,
-              (index) => Customcard(
+              (index) => CustomCard(
                   articleImages[index], articleTitles[index], articleBodies[index]),
             ),
           ),

@@ -4,16 +4,16 @@ class CustomCard extends StatefulWidget {
 final String img;
 final String title;
 final String body;
-  
-  const CustomCard(this.img,  this.title,  this.body, {super.key});
+
+const CustomCard(this.img,  this.title,  this.body, {super.key});
 
 
 
   @override
-  State<CustomCard> createState() => _Customcard();
+  State<CustomCard> createState() => _CustomCard();
 }
 
-class _Customcard extends State<CustomCard>{
+class _CustomCard extends State<CustomCard>{
   @override
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
